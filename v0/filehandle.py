@@ -1,16 +1,18 @@
 class file:
     def __init__(self, path) -> None:
         self.path = path
-        self.data = ''
+        self.data = self.dataFetch()
 
     def openf(self, mode):
         return open(self.path, mode)
 
     def dataFetch(self):
+        h = ''
         for i in self.openf('r'):
-            self.data += i
+            h += i
+        return h
 
-    def cleanF(self):
+    def cleanf(self):
         self.openf('r+').truncate(0)
 
     def write(self, data):
