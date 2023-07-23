@@ -15,8 +15,13 @@ class file:
     def cleanf(self):
         self.openf('r+').truncate(0)
 
-    def write(self, data):
+    def selfwrite(self):
         self.openf('a').write(self.data.strip())
+        self.openf('a').close()
+
+    def write(self,data:str|int|float='anything') -> str|int|float:
+        """writes data in the file"""
+        self.openf('a').write(data)
         self.openf('a').close()
 
     def comment(self, keyword):
@@ -31,5 +36,5 @@ class file:
         self.data = self.newData
         self.openf('r').close()
         self.cleanF()
-        self.write(self.data.strip())
+        self.selfwrite()
     
