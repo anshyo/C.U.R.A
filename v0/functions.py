@@ -9,8 +9,6 @@ class ai:
     def __init__(self): 
         self.passfile = f("v0/pass.txt")
         self.password = self.passfile.data
-        self.b = ""
-        self._pass = self.b
 
     def _quit(self):
         print("quiting.........")
@@ -18,23 +16,23 @@ class ai:
 
     def first(self):
         a = input("password/open?: ")
-        self.b = ""
+        b = ""
         while True:
             if "pass" in a:
                 if a == "password":
-                    self.b = input("enter password: ")
+                    b = input("enter password: ")
                     break
                 else:
                     c = input("do u mean 'password'(y/n): ")
                     if c == "y":
-                        self.b = input("enter password: ")
+                        b = input("enter password: ")
                         break
                     else:
                         pass
             else:
                 print("done!! your program is going to be accessible to all")
                 break
-        self.passfile.write(str(encrypT(self._pass).binaryStrEncrypt()))
+        self.passfile.write(str(encrypT(b).binaryStrEncrypt()))
         sleep(1)
 
     def passCheck(self):
@@ -103,7 +101,7 @@ class encrypT:
 
     def binStrDecrypt(self):
         o = ""
-        for i in self.binStrEnc:
+        for i in self.:
             o += self.binChr(i)
         return o
 
