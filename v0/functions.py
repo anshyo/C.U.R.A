@@ -32,16 +32,67 @@ class ai:
             else:
                 print("done!! your program is going to be accessible to all")
                 break
-        self.passfile.write(str(encrypT(b).binaryStrEncrypt()))
+        self.passfile.write(binaryencrypt(b).encrypt())
         sleep(1)
 
     def passCheck(self):
         a = input("password: ")
-        if a == encrypT.binStrDecrypt(self.passfile.data):
+        if a == binaryencrypt().adecrypt(self.passfile.data):
             pass
         else:
             self._quit()
 
+class binaryencrypt:
+    def __init__(self,text='whoknows') -> None:
+        self.text = text
+        self.asscilist = []
+        self.binarylist = []
+        self.binarystring = ''
+
+    def asscifind(self):
+        for i in self.text:
+            self.asscilist.append(ord(i))
+        return self.asscilist
+    
+    def binaryfind(self):
+        for i in self.asscilist:
+            self.binarylist.append(bin(i))
+        return self.binarylist
+    
+    def encrypt(self):
+        self.asscifind()
+        self.binaryfind()
+        for i in self.binarylist:
+            self.binarystring += i
+        return self.binarystring
+    
+    def decrypt(self):
+        dlist = []
+        for i in self.binarystring.split('0b'):
+            dlist.append('0b'+i)
+        dlist.remove('0b')
+        d=[]
+        for i in dlist:
+            d.append(int(i,2))
+        dlist=d
+        d=''
+        for i in dlist:
+            d+= chr(i)
+        return d
+    
+    def adecrypt(self,dcrypt):
+        dlist = []
+        for i in dcrypt.split('0b'):
+            dlist.append('0b'+i)
+        dlist.remove('0b')
+        d=[]
+        for i in dlist:
+            d.append(int(i,2))
+        dlist=d
+        d=''
+        for i in dlist:
+            d+= chr(i)
+        return d
 
 class paths:
     def __init__(self) -> None:
@@ -88,41 +139,12 @@ def downloadyt(link):
     print(f"your file is in the folder {path}")
 
 
-class encrypT:
-    def __init__(self, text: str) -> None:
-        self.key = Fernet(Fernet.generate_key())
-        self.obj = text
-
-    def binaryStrEncrypt(self):
-        b = []
-        for i in self.obj:
-            b.append(self.chrBin(i))
-        return b
-
-    def binStrDecrypt(self):
-        o = ""
-        for i in self.:
-            o += self.binChr(i)
-        return o
-
-    def chrBin(data):
-        return bin(ord(data))
-
-    def binChr(data):
-        return chr(int(data, 2))
-
-    def doEncrypt(self):
-        return self.key.encrypt(self.obj.encode())
-
-    def doSelfDecrypt(self):
-        return self.key.decrypt(self.doEncrypt().decode())
-
-    def doDecrypt(self, dat):
-        return self.key.decrypt(dat.decode())
-
 
 # only of test
 
 if __name__ == "__main__":
-    ai().first()
+    ai().passCheck()
+    # a = binaryencrypt('idk')
+    # print(a.encrypt())
+    # print(a.decrypt())
     # open('v0/pass.txt' , 'w').write('e')

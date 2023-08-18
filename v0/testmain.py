@@ -4,6 +4,14 @@
 # fileF.comment('idk')
 
 import pathlib
-import functions
+# import functions
 
-functions.downloadyt('https://www.youtube.com/watch?v=PWRg_wak9oI&pp=ygUMMTUgc2VjIHZpZGVv')
+
+if __name__ == '__main__':
+    # a = open('/home/antheory/Documents/github/C.U.R.A/v0/test.txt','a+')
+    # a.write('idkdkdkdkkdk;')
+    # print(a.read())
+    # passa
+    # print(ord('a'))
+    print(int('0b1010101',2))
+    pass
