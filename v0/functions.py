@@ -3,18 +3,28 @@ import pathlib
 from filehandle import file as f
 from cryptography.fernet import Fernet
 from time import sleep
+import wikipedia
 
 
 class ai:
+    '''
+    all main ai related functions
+    '''
     def __init__(self): 
         self.passfile = f("v0/pass.txt")
         self.password = self.passfile.data
 
     def _quit(self):
+        '''
+        quit the whole program
+        '''
         print("quiting.........")
         sleep(5)
 
     def first(self):
+        '''
+        only for first use or to assign password
+        '''
         a = input("password/open?: ")
         b = ""
         while True:
@@ -36,11 +46,42 @@ class ai:
         sleep(1)
 
     def passCheck(self):
+        '''
+        check weather password is correct or not
+        '''
         a = input("password: ")
         if a == binaryencrypt().adecrypt(self.passfile.data):
-            pass
+            return 'pass'
         else:
             self._quit()
+            return 'wrong'
+    
+    def passchange(self):
+        '''
+        changes the password
+        '''
+        check = self.passCheck()
+        if check == 'pass':
+            self.first()
+        else:
+            print('error')
+        
+        
+
+# still in work
+class search:
+    '''
+    searchs for geo locations, songs, any find of webpage\'s description and more
+    '''
+    def __init__(self,query) -> None:
+        self.query = query
+
+    def brief(self):
+        return wikipedia.search(self.query)
+
+
+
+    
 
 class binaryencrypt:
     def __init__(self,text='whoknows') -> None:
@@ -95,10 +136,14 @@ class binaryencrypt:
         return d
 
 class paths:
+    '''
+    returns path of the file in with it is running or can just make a new folder
+    '''
     def __init__(self) -> None:
         self.currentFilePath = self.path()
 
     def path():
+        '''returns the file in which this is running'''
         path = str(pathlib.Path(__file__))
         path = path[::-1]
         npath = ""
@@ -119,6 +164,9 @@ class paths:
 
 # stillinwork
 def downloadyt(link):
+    '''
+    downloads video with the help of its url
+    '''
     link = input("link: ")
     while True:
         try:
@@ -143,8 +191,5 @@ def downloadyt(link):
 # only of test
 
 if __name__ == "__main__":
-    ai().passCheck()
-    # a = binaryencrypt('idk')
-    # print(a.encrypt())
-    # print(a.decrypt())
-    # open('v0/pass.txt' , 'w').write('e')
+    ai().passchange()
+    pass

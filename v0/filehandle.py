@@ -17,12 +17,10 @@ class file:
 
     def selfwrite(self):
         self.openf('w').write(self.data.strip())
-        self.openf('w').close()
 
     def write(self,data:str|int|float='anything') -> str|int|float:
         """writes data in the file"""
         self.openf('w').write(data)
-        self.openf('w').close()
 
     def append(self,data:str|int|float='anything') -> str|int|float:
         """appends data in the file"""
